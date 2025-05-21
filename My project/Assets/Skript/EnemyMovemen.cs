@@ -5,6 +5,7 @@ public class EnemyMovemen : MonoBehaviour
 {
     public Transform player;
     private NavMeshAgent navMeshAgent;
+    public PlayerController playerController;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -14,9 +15,13 @@ public class EnemyMovemen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player != null)
+        if (playerController.MoveStart == true)
         {
-            navMeshAgent.SetDestination(player.position);
+
+            if (player != null)
+            {
+                navMeshAgent.SetDestination(player.position);
+            }
         }
     }
 }

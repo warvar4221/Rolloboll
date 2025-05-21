@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private int count;
     public TextMeshProUGUI countText;
     public GameObject winTextObject;
+    public bool MoveStart= false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,6 +24,14 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
+        if (MoveStart == false)
+        {
+
+            if (movementX != 0.0f | movementY != 0.0f)
+            {
+                MoveStart = true;
+            }
+        }
         rb.AddForce(movement * speed);
     }
     void OnMove(InputValue movementValue)
@@ -30,6 +39,7 @@ public class PlayerController : MonoBehaviour
         Vector2 movementVector = movementValue.Get<Vector2>();
         movementX = movementVector.x;
         movementY = movementVector.y;
+        
     }
     void SetCountText()
     {
